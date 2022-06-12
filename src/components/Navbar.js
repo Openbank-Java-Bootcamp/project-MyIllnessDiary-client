@@ -7,17 +7,20 @@ function Navbar() {
 
   return (
     <nav className="Navbar">
-      <Link to="/">
-        <button>Home</button>
-      </Link>
+      
 
       {isLoggedIn && (
         <>
-          <Link to="/diaries">
+        <Link to="/">
+            <button>Home</button>
+          </Link >
+          <Link to="/diaries/:diaryId">
             <button>Diaries</button>
-          </Link>
+          </Link >
+          <Link to="/login">
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>
+          </Link >
         </>
       )}
 
