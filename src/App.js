@@ -1,26 +1,33 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar"; // <== IMPORT
-import HomePage from "./pages/DiaryPage"; // <== IMPORT
+import Navbar from "./components/Navbar"; 
+import HomePage from "./pages/DiaryPage"; 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsDoctor from "./components/IsDoctor";
-import DiaryPage from './pages/DiaryPage';
-import AddDiaryPage from './components/AddDiaryPage';
 import DiaryDetailsPage from './pages/DiaryDetailsPage';
 import EditDiaryPage from './pages/EditDiaryPage';
 import IsPatient from './components/IsPatient';
-import AdminView from './pages/PatientListPage';
 import PatientListPage from './pages/PatientListPage';
+import { AuthContext } from './context/auth.context';
+import { useContext } from 'react';
 
 function App() {
+  const {user}= useContext(AuthContext);
+  const  {isLoggedIn}= useContext(AuthContext);
+  console.log(user);
   return (
     <div className="App">
       <Navbar />
+      
+      {!isLoggedIn ? <></> :
+      user.role === "ROLE_PATIENT"  ? <HomePage /> : <PatientListPage />}
+      
 
 <Routes>
-<Route path="/" element={<IsPatient><HomePage /> </IsPatient>} />
+
+
   
   <Route
           path="/diaries/:diaryId"

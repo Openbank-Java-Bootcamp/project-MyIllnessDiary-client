@@ -14,9 +14,6 @@ function Navbar() {
         <Link to="/">
             <button>Home</button>
           </Link >
-          <Link to="/diaries/:diaryId">
-            <button>Diaries</button>
-          </Link >
           <Link to="/login">
           <button onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>

@@ -39,12 +39,14 @@ function DiaryDetailsPage(props) {
       )}
 
       <AddDiaryLog refreshDiary={getDiary} diaryId={diaryId} />
-
+      
       {diary &&
         diary.diaryLogs.map((diaryLog) => <DiaryLogCard key={diaryLog.id} {...diaryLog} />)}
 
-      <Link to="/diaries">
-        <button>Back to diaries</button>
+      
+
+      <Link to="/">
+        <button>Back Home</button>
       </Link>
 
      

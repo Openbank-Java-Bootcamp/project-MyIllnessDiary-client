@@ -38,7 +38,7 @@ function AddDiaryLog(props) {
 
   return (
     <div className="AddDiaryLog">
-      <h3>Add New Diary Log</h3>
+      <h3>How do you feel today?</h3>
 
       <form onSubmit={handleSubmit}>
         <label>Number of Crisis:</label>
@@ -71,7 +71,7 @@ function AddDiaryLog(props) {
         />
 
 
-        <button type="submit">Add Diary Log</button>
+        <button type="submit">Add Diary Info</button>
       </form>
     </div>
   );

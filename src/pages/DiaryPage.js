@@ -27,33 +27,13 @@ function DiaryPage() {
     getAllDiaries();
   }, []);
 
-  const [roles, setRoles] = useState("");
-
-  const { storeToken, authenticateUser } = useContext(AuthContext);
-
-  const handleRoles = (e) => setRoles(e.target.value);
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    const requestBody = { roles };
-
-    axios
-      .post(`${API_URL}/api/auth/login`, requestBody)
-      .then((response) => {
-        // Request to the server's endpoint `/auth/login` returns a response
-        // with the JWT string ->  response.data.authToken
-        console.log("JWT token", response.data.authToken);
-
-        storeToken(response.data.authToken);
-        authenticateUser();
-      })
-      
-  };
+  
 
 
   return (
     <div className="DiaryPage">
-      <h1>Home Page, List of diaries</h1>
+      <h1>Home Page</h1>
+      <h2>Here you can see the list of your diaries</h2>
       <AddDiaryPage refreshDiaries={getAllDiaries} />
       
       {diaries.map((diary) => (

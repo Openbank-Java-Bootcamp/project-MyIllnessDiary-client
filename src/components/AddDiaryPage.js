@@ -26,13 +26,13 @@ function AddDiaryPage(props) {
   };
 
 
-  return( //<div>Hello, user</div>;
+  return( 
   <div className="AddDiary">
       <h3>Add New Diary</h3>
   
       <form onSubmit={handleSubmit}>
 
-        <label>Date:</label>
+        <label></label>
         <input
           type="date"
           name="diaryDate"

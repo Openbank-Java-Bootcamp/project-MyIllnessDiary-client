@@ -19,7 +19,7 @@ function AuthProviderWrapper(props) {
     //  <==  ADD
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem("authToken");
-
+    
     // If the token exists in the localStorage
     if (storedToken) {
       // We must send the JWT token in the request's "Authorization" Headers
