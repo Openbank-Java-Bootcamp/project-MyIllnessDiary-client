@@ -21,13 +21,22 @@ function App() {
     <div className="App">
       <Navbar />
       
-      {!isLoggedIn ? <></> :
-      user.role === "ROLE_PATIENT"  ? <HomePage /> : <PatientListPage />}
+      
       
 
 <Routes>
 
 
+    {!isLoggedIn ? <></> :
+  
+      user.role === "ROLE_PATIENT"  ? 
+      <Route
+      path="/"
+      element={<HomePage />} />: 
+      <Route
+      path="/patients"
+      element={
+      <PatientListPage />} />}
   
   <Route
           path="/diaries/:diaryId"
