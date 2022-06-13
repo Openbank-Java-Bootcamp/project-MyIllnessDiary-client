@@ -5,12 +5,14 @@ import Navbar from "./components/Navbar"; // <== IMPORT
 import HomePage from "./pages/DiaryPage"; // <== IMPORT
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
-import IsPrivate from "./components/IsPrivate";
-import IsAnon from "./components/IsAnon";
+import IsDoctor from "./components/IsDoctor";
 import DiaryPage from './pages/DiaryPage';
 import AddDiaryPage from './components/AddDiaryPage';
 import DiaryDetailsPage from './pages/DiaryDetailsPage';
 import EditDiaryPage from './pages/EditDiaryPage';
+import IsPatient from './components/IsPatient';
+import AdminView from './pages/PatientListPage';
+import PatientListPage from './pages/PatientListPage';
 
 function App() {
   return (
@@ -18,23 +20,23 @@ function App() {
       <Navbar />
 
 <Routes>
-<Route path="/" element={<IsPrivate><HomePage /> </IsPrivate>} />
+<Route path="/" element={<IsPatient><HomePage /> </IsPatient>} />
   
   <Route
           path="/diaries/:diaryId"
           element={
-            <IsPrivate>
+            <IsPatient>
               <DiaryDetailsPage />
-            </IsPrivate>
+            </IsPatient>
           }
         />
 
 <Route
           path="/diaries/edit/:diaryId"
           element={
-            <IsPrivate>
+            <IsPatient>
               <EditDiaryPage />
-            </IsPrivate>
+            </IsPatient>
           }
         />
 
@@ -42,17 +44,17 @@ function App() {
   <Route
     path="/signup"
     element={
-      <IsAnon>
+      
         <SignupPage />
-      </IsAnon>
+      
     }
   />
   <Route
     path="/login"
     element={
-      <IsAnon>
+      
         <LoginPage />
-      </IsAnon>
+      
     }
   />
 </Routes>

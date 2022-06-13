@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const API_URL = "http://localhost:5005";
 
-function AdminView() {
+function PatientListPage() {
   const [patients, setPatients] = useState([]);
 
   const getAllPatients = () => {
@@ -13,7 +13,7 @@ function AdminView() {
 
     // Send the token through the request "Authorization" Headers
     axios
-      .get(`${API_URL}/api/projects`, {
+      .get(`${API_URL}/api/auth/users`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setPatients(response.data))
@@ -30,10 +30,12 @@ function AdminView() {
 
 
   return (
-    <div>Hello, doctor</div>
+    <div>Hello, doctor
 
-   
+    
+
+</div>
   );
 }
 
-export default AdminView;
+export default PatientListPage;
