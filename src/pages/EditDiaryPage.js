@@ -19,7 +19,7 @@ function EditDiaryPage(props) {
     const storedToken = localStorage.getItem("authToken");
  
     axios
-      .get(`${API_URL}/api/diaries/${diaryId}`, {
+      .get(`${API_URL}/api/diarylogs/${diaryId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -41,7 +41,7 @@ function EditDiaryPage(props) {
     const requestBody = { crisisNumber, crisisType, duration, mood };
 
     axios
-      .put(`${API_URL}/api/diaries/${diaryId}`, requestBody, {
+      .put(`${API_URL}/api/diarylogs/${diaryId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -54,11 +54,11 @@ function EditDiaryPage(props) {
   const deleteDiary = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .delete(`${API_URL}/api/diaries/${diaryId}`, {
+      .delete(`${API_URL}/api/diarylogs/${diaryId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-        navigate("/diaries");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
