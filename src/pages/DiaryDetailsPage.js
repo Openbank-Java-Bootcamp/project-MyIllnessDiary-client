@@ -51,12 +51,13 @@ function DiaryDetailsPage(props) {
 
       
 
-    <FootPatient />
+    
 
      
       <Link to={`/diaries/edit/${diaryId}`}>
         <button>Edit Diary</button>
       </Link>
+      <FootPatient />
     </div>
   );
 }

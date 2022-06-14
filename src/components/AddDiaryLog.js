@@ -59,7 +59,7 @@ function AddDiaryLog(props) {
           value={crisisType}
           onChange={(e) => setCrisisType(e.target.value)}
         />
-        <label>Duration:</label>
+        <label>Duration /hrs:</label>
         <input
           type="number"
           name="duration"
