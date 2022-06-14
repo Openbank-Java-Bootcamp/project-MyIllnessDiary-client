@@ -70,9 +70,7 @@ nav li {
 
 .AddDiaryPage,
 .AddDiaryLog,
-.EditDiaryPage,
-.LoginPage,
-.SignupPage {
+.EditDiaryPage{
   background: #f9eec3;
   border: 1px solid grey;
   box-shadow: 0px 2px 3px grey;
@@ -85,16 +83,25 @@ nav li {
 }
 .EditDiaryPage {
   background-color: rgb(239, 196, 88);
+  background: #bd9a0e;
+  border: 1px solid grey;
+  box-shadow: 0px 2px 3px grey;
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px;
 }
+
 
 .SignupPage,
 .LoginPage {
-  background-color: #608dd5;
+  background-color: #53dbdb;
+  color: rgb(9, 63, 110);
 }
 
-.LoginPage {
-  background-color: #94a7c8;
-}
+
 .AddDiaryPage form,
 .AddDiaryLog form,
 .EditDiaryPage form,

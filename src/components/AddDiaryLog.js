@@ -8,6 +8,8 @@ function AddDiaryLog(props) {
   const [crisisType, setCrisisType] = useState("");
   const [duration, setDuration] = useState(0);
   const [mood, setMood] = useState("");
+  const [comments, setComments] = useState("");
+  const [doctorName, setDoctorName] = useState("");
 
   const handleSubmit = (e) => {
   
@@ -15,7 +17,7 @@ function AddDiaryLog(props) {
 
     const { diaryId } = props;
     
-    const requestBody = { crisisNumber, crisisType, duration, mood, diaryId };
+    const requestBody = { crisisNumber, crisisType, duration, mood, comments, doctorName, diaryId };
     const storedToken = localStorage.getItem("authToken");
 
     axios
@@ -28,6 +30,8 @@ function AddDiaryLog(props) {
         setCrisisType("");
         setDuration(0)
         setMood("")
+        setComments("")
+        setDoctorName("")
 
         // Invoke the callback function coming through the props
         // from the DiaryDetailsPage, to refresh the patient details
@@ -70,8 +74,24 @@ function AddDiaryLog(props) {
           onChange={(e) => setMood(e.target.value)}
         />
 
-
         <button type="submit">Add Diary Info</button>
+
+        <label>Indications by the doctor:</label>
+        <input
+          type="text"
+          name="comments"
+          value={comments}
+          onChange={(e) => setComments(e.target.value)}
+        />
+        <label>Doctor Name:</label>
+        <input
+          type="text"
+          name="doctorName"
+          value={doctorName}
+          onChange={(e) => setDoctorName(e.target.value)}
+        />
+
+        <button type="submit">Add Comments by the Doctor</button>
       </form>
     </div>
   );

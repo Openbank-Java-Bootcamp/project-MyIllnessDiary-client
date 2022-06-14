@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"; 
 import AddDiaryLog from "../components/AddDiaryLog";
 import DiaryLogCard from "../components/DiaryLogCard";
+import Navbar from "../components/Navbar"; 
+import FootPatient from "../components/FootPatient"; 
+
 const API_URL = "http://localhost:5005"; 
 
 function DiaryDetailsPage(props) {
@@ -32,6 +35,9 @@ function DiaryDetailsPage(props) {
 
   return (
     <div className="DiaryDetails">
+
+    <Navbar />
+
       {diary && (
         <>
           <h1>{diary.diaryDate}</h1>
@@ -45,9 +51,7 @@ function DiaryDetailsPage(props) {
 
       
 
-      <Link to="/">
-        <button>Back Home</button>
-      </Link>
+    <FootPatient />
 
      
       <Link to={`/diaries/edit/${diaryId}`}>

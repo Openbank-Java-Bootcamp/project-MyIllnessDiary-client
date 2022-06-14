@@ -1,17 +1,19 @@
 
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar"; 
+
 import HomePage from "./pages/DiaryPage"; 
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsDoctor from "./components/IsDoctor";
 import DiaryDetailsPage from './pages/DiaryDetailsPage';
+import DiaryPage from './pages/DiaryPage';
 import EditDiaryPage from './pages/EditDiaryPage';
 import IsPatient from './components/IsPatient';
 import PatientListPage from './pages/PatientListPage';
 import { AuthContext } from './context/auth.context';
 import { useContext } from 'react';
+import PatientDetailsPage from './pages/PatientDetailsPage';
 
 function App() {
   const {user}= useContext(AuthContext);
@@ -19,7 +21,7 @@ function App() {
   console.log(user);
   return (
     <div className="App">
-      <Navbar />
+      
 
 <Routes>
 
@@ -36,13 +38,24 @@ function App() {
       <PatientListPage />} />}
 
     
+<Route
+      path="/"
+      element={<DiaryPage />} />: 
+      <Route />
   
   <Route
           path="/diaries/:diaryId"
           element={
-            <IsPatient>
               <DiaryDetailsPage />
-            </IsPatient>
+            
+          }
+        />
+        <Route
+          path="/patients/details/:userId"
+          element={
+            
+              <PatientDetailsPage />
+            
           }
         />
 

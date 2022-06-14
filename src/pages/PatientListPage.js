@@ -3,13 +3,22 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Search from "../components/Search";
 import { AuthContext } from "../context/auth.context";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import DiaryDetailsPage from "./DiaryDetailsPage";
+import DiaryPage from "./DiaryPage";
+import DiaryLogCard from "../components/DiaryLogCard";
+import PatientCard from "../components/PatientCard"
+import NavbarDoctor from "../components/NavbarDoctor"; 
 
 const API_URL = "http://localhost:5005";
 
-function PatientListPage() {
+function PatientListPage(props) {
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState("");
+
+  const [diary, setDiary] = useState(null);
+  
+  const { diaryId, userId } = useParams(); 
 
   const getAllPatients = () => {
     // Get the token from the localStorage
@@ -31,11 +40,10 @@ function PatientListPage() {
   }, []);
 
 
-
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async () => { 
       try {
-        const response = await axios.get(API_URL);
+        const response = await axios.get(API_URL + `/api/auth/users`);
         setUsers(response.data);
       } catch (error) {
         console.log(error);
@@ -45,38 +53,45 @@ function PatientListPage() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchSearchedUsers = async () => {
-      try {
-        const response = await axios.get(API_URL + `/search?q=${query}`);
 
-        setUsers(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
-    fetchSearchedUsers();
-  }, [query]);
 
-  const filterUserHandler = (string) => {
-    setQuery(string);
+  const getDiary = () => {
+    
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .get(`${API_URL}/api/diaries/${diaryId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        const oneDiary = response.data;
+        setDiary(oneDiary);
+      })
+      .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    
+    getDiary();
+  }, []);
 
 
 
 
   return (
-    <div>Hello, doctor
 
-<Search filterUserHandler={filterUserHandler} />
+    
 
+    <div>
+      <NavbarDoctor />
+      Hello, doctor
 
+      <h2>Here you can see the list of the patients</h2>
 
-{users.map((user) => {
+      {users.map((user) => {
           return (
             <div key={user.id}>
-              <Link to={"/diaries/:diaryId" + user.id}>
+              <Link to={"/"}>
                 <div className="card" style={{ width: "18rem" }}>
                   <div className="card-body">
                     
@@ -88,6 +103,8 @@ function PatientListPage() {
             </div>
           );
         })}
+      
+      
 
 </div>
   );

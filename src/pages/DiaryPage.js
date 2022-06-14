@@ -4,7 +4,7 @@ import { useContext, useState , useEffect} from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom"; 
 import { AuthContext } from "../context/auth.context";
-
+import Navbar from "../components/Navbar"; 
 import AddDiaryPage from "../components/AddDiaryPage";
 import DiaryCard from "../components/DiaryCard";
 
@@ -32,6 +32,8 @@ function DiaryPage() {
 
   return (
     <div className="DiaryPage">
+      <Navbar />
+
       <h1>Home Page</h1>
       <h2>Here you can see the list of your diaries</h2>
       <AddDiaryPage refreshDiaries={getAllDiaries} />

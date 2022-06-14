@@ -1,5 +1,5 @@
 
-function DiaryLogCard({ crisisNumber, crisisType, duration, mood }) {
+function DiaryLogCard({ crisisNumber, crisisType, duration, mood, comments, doctorName }) {
     return (
       <div className="DiaryLogCard card">
         <h3>Number of Crisis: </h3>
@@ -10,6 +10,10 @@ function DiaryLogCard({ crisisNumber, crisisType, duration, mood }) {
         <p>{duration}</p>
         <h3>Mood: </h3>
         <p>{mood}</p>
+        <h3>Indications by the Doctor: </h3>
+        <p>{comments}</p>
+        <h3>Doctor Name: </h3>
+        <p>{doctorName}</p>
       </div>
     );
   }

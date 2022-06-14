@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom"; 
 import DiaryLogCard from "../components/DiaryLogCard";
+import Navbar from "../components/Navbar"; 
 
 const API_URL = "http://localhost:5005";
 
@@ -10,6 +11,8 @@ function EditDiaryPage(props) {
     const [crisisType, setCrisisType] = useState("");
     const [duration, setDuration] = useState(0);
     const [mood, setMood] = useState("");
+    const [comments, setComments] = useState("");
+    const [doctorName, setDoctorName] = useState("");
 
     const [diary, setDiary] = useState(null);
   
@@ -31,6 +34,8 @@ function EditDiaryPage(props) {
         setCrisisType(oneDiary.crisisType);
         setDuration(oneDiary.duration);
         setMood(oneDiary.mood);
+        setComments(oneDiary.comments);
+        setDoctorName(oneDiary.doctorName);
       })
       .catch((error) => console.log(error));
   }, [diaryId]);
@@ -41,7 +46,7 @@ function EditDiaryPage(props) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
 
-    const requestBody = { crisisNumber, crisisType, duration, mood };
+    const requestBody = { crisisNumber, crisisType, duration, mood, comments, doctorName };
 
     axios
       .put(`${API_URL}/api/diarylogs/${diaryId}`, requestBody, {
@@ -68,6 +73,8 @@ function EditDiaryPage(props) {
 
   return (
     <div className="EditDiaryPage">
+      <Navbar />
+      
       <h3>Edit Diary</h3>
 
       <form onSubmit={handleFormSubmit}>
@@ -99,7 +106,20 @@ function EditDiaryPage(props) {
           value={mood}
           onChange={(e) => setMood(e.target.value)}
         />
-
+        <label>Indications by the doctor:</label>
+        <input
+          type="text"
+          name="comments"
+          value={comments}
+          onChange={(e) => setComments(e.target.value)}
+        />
+        <label>Doctor Name:</label>
+        <input
+          type="text"
+          name="doctorName"
+          value={doctorName}
+          onChange={(e) => setDoctorName(e.target.value)}
+          />
 
         <button type="submit">Update Diary</button>
       </form>
