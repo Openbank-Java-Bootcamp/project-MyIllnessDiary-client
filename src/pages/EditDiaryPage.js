@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom"; 
+import DiaryLogCard from "../components/DiaryLogCard";
 
 const API_URL = "http://localhost:5005";
 
@@ -10,6 +11,7 @@ function EditDiaryPage(props) {
     const [duration, setDuration] = useState(0);
     const [mood, setMood] = useState("");
 
+    const [diary, setDiary] = useState(null);
   
   const { diaryId } = useParams(); 
 
@@ -32,6 +34,7 @@ function EditDiaryPage(props) {
       })
       .catch((error) => console.log(error));
   }, [diaryId]);
+
 
   const handleFormSubmit = (e) => {
 
@@ -102,6 +105,9 @@ function EditDiaryPage(props) {
       </form>
 
       <button onClick={deleteDiary}>Delete Diary</button>
+
+      {diary &&
+        diary.diaryLogs.map((diaryLog) => <DiaryLogCard key={diaryLog.id} {...diaryLog} />)}
     </div>
   );
 }

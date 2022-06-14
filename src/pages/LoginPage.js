@@ -1,9 +1,13 @@
 // src/pages/LoginPage.js
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, Route, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import PatientListPage from "./PatientListPage";
+import DiaryPage from "./DiaryPage";
+import userEvent from "@testing-library/user-event";
+import App from "../App";
 
 const API_URL = "http://localhost:5005";
 
@@ -14,7 +18,7 @@ function LoginPage(props) {
 
   const navigate = useNavigate();
 
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+  const { storeToken, authenticateUser, user } = useContext(AuthContext);
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -32,13 +36,20 @@ function LoginPage(props) {
 
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/"); 
       })
       .catch((error) => {
-        const errorDescription = error.response.data.errors[0].defaultMessage;
+        console.log(error);
+        const errorDescription = error.response.data.message;
+        //const errorDescription = error.response.data.errors[0].defaultMessage;
         setErrorMessage(errorDescription);
       });
   };
+
+  useEffect(() => {
+    if (user) {
+      user.role == "ROLE_PATIENT" ? navigate("/") : navigate("/patients");
+    }
+  }, [user]);
 
   return (
     <div className="LoginPage">
@@ -55,8 +66,6 @@ function LoginPage(props) {
           value={password}
           onChange={handlePassword}
         />
-
-        
 
         <button type="submit">Login</button>
       </form>

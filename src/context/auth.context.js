@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 const API_URL = "http://localhost:5005";
 
 const AuthContext = React.createContext();
@@ -19,7 +20,7 @@ function AuthProviderWrapper(props) {
     //  <==  ADD
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem("authToken");
-    
+
     // If the token exists in the localStorage
     if (storedToken) {
       // We must send the JWT token in the request's "Authorization" Headers
@@ -30,6 +31,7 @@ function AuthProviderWrapper(props) {
         .then((response) => {
           // If the server verifies that JWT token is valid
           const user = response.data;
+          console.log("From auth context " + user);
           // Update state variables
           setIsLoggedIn(true);
           setIsLoading(false);

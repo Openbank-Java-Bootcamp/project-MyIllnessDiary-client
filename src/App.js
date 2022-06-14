@@ -20,9 +20,6 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      
-      
-      
 
 <Routes>
 
@@ -37,6 +34,8 @@ function App() {
       path="/patients"
       element={
       <PatientListPage />} />}
+
+    
   
   <Route
           path="/diaries/:diaryId"

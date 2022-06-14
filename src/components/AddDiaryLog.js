@@ -30,7 +30,7 @@ function AddDiaryLog(props) {
         setMood("")
 
         // Invoke the callback function coming through the props
-        // from the ProjectDetailsPage, to refresh the project details
+        // from the DiaryDetailsPage, to refresh the patient details
         props.refreshDiary();
       })
       .catch((error) => console.log(error));
