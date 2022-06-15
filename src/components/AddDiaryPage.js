@@ -4,12 +4,12 @@ import React, { useState } from "react";
 const API_URL = "http://localhost:5005";
 
 function AddDiaryPage(props) {
-  const [diaryDate, setDiaryDate]=useState("");
+  const [diaryWeek, setDiaryWeek]=useState("");
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { diaryDate };
+    const body = { diaryWeek };
     const storedToken = localStorage.getItem("authToken");
 
     axios
@@ -18,7 +18,7 @@ function AddDiaryPage(props) {
       })
       .then((response) => {
         // Reset the state
-        setDiaryDate("");
+        setDiaryWeek("");
         
         props.refreshDiaries();
       })
@@ -34,10 +34,10 @@ function AddDiaryPage(props) {
 
         <label></label>
         <input
-          type="date"
-          name="diaryDate"
-          onChange={(e) => setDiaryDate(e.target.value)}
-          value={diaryDate}
+          type="text"
+          name="diaryWeek"
+          onChange={(e) => setDiaryWeek(e.target.value)}
+          value={diaryWeek}
         />
 
         <button type="submit">Submit</button>
