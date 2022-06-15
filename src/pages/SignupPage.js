@@ -53,14 +53,6 @@ function SignupPage(props) {
           onChange={handlePassword}
         />
 
-        <label>
-          Rol:
-          <select id="rol">
-            <option value="admin">Doctor</option>
-            <option value="user">Patient</option>
-          </select>
-        </label>
-
         <label>Name:</label>
         <input type="text" name="name" value={name} onChange={handleName} />
 

@@ -42,6 +42,11 @@ function App() {
       path="/"
       element={<DiaryPage />} />: 
       <Route />
+
+      <Route
+      path="/patients"
+      element={<PatientListPage />} />: 
+      <Route />
   
   <Route
           path="/diaries/:diaryId"

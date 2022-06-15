@@ -15,35 +15,25 @@ const API_URL = "http://localhost:5005";
 function PatientListPage(props) {
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState("");
-
+  const [roleId, setRoleId] = useState(0);
   const [diary, setDiary] = useState(null);
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   
   const { diaryId, userId } = useParams(); 
 
-  const getAllPatients = () => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
+  
 
-    // Send the token through the request "Authorization" Headers
-    axios
-      .get(`${API_URL}/api/auth/users`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => setUsers(response.data))
-      .catch((error) => console.log(error));
-  };
-
-  // We set this effect will run only once, after the initial render
-  // by setting the empty dependency array - []
-  useEffect(() => {
-    getAllPatients();
-  }, []);
 
 
   useEffect(() => {
     const fetchData = async () => { 
+      const requestBody = { roleId };
+      const storedToken = localStorage.getItem("authToken");
       try {
-        const response = await axios.get(API_URL + `/api/auth/users`);
+
+        const response = await axios.get(API_URL + `/api/auth/users`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
         setUsers(response.data);
       } catch (error) {
         console.log(error);
@@ -54,37 +44,10 @@ function PatientListPage(props) {
   }, []);
 
 
-
-
-  const getDiary = () => {
-    
-    const storedToken = localStorage.getItem("authToken");
-    axios
-      .get(`${API_URL}/api/diaries/${diaryId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        const oneDiary = response.data;
-        setDiary(oneDiary);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  useEffect(() => {
-    
-    getDiary();
-  }, []);
-
-
-
-
   return (
-
-    
 
     <div>
       <NavbarDoctor />
-      Hello, doctor
 
       <h2>Here you can see the list of the patients</h2>
 

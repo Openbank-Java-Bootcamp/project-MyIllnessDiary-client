@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom"; 
 import DiaryLogCard from "../components/DiaryLogCard";
 import Navbar from "../components/Navbar"; 
+import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005";
 
@@ -13,6 +14,8 @@ function EditDiaryPage(props) {
     const [mood, setMood] = useState("");
     const [comments, setComments] = useState("");
     const [doctorName, setDoctorName] = useState("");
+    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+
 
     const [diary, setDiary] = useState(null);
   
@@ -58,6 +61,7 @@ function EditDiaryPage(props) {
         navigate("/diaries/" + diaryId);
       });
   };
+  
 
   const deleteDiary = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -78,6 +82,7 @@ function EditDiaryPage(props) {
       <h3>Edit Diary</h3>
 
       <form onSubmit={handleFormSubmit}>
+      
       <label>Number of Crisis:</label>
         <input
           type="number"
@@ -106,6 +111,7 @@ function EditDiaryPage(props) {
           value={mood}
           onChange={(e) => setMood(e.target.value)}
         />
+        
         <label>Indications by the doctor:</label>
         <input
           type="text"
@@ -113,6 +119,7 @@ function EditDiaryPage(props) {
           value={comments}
           onChange={(e) => setComments(e.target.value)}
         />
+        
         <label>Doctor Name:</label>
         <input
           type="text"
@@ -120,7 +127,7 @@ function EditDiaryPage(props) {
           value={doctorName}
           onChange={(e) => setDoctorName(e.target.value)}
           />
-
+        
         <button type="submit">Update Diary</button>
       </form>
 

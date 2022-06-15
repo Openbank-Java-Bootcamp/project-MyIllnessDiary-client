@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005";
 
@@ -10,6 +11,8 @@ function AddDiaryLog(props) {
   const [mood, setMood] = useState("");
   const [comments, setComments] = useState("");
   const [doctorName, setDoctorName] = useState("");
+
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
   
@@ -33,6 +36,7 @@ function AddDiaryLog(props) {
         setComments("")
         setDoctorName("")
 
+
         // Invoke the callback function coming through the props
         // from the DiaryDetailsPage, to refresh the patient details
         props.refreshDiary();
@@ -42,9 +46,11 @@ function AddDiaryLog(props) {
 
   return (
     <div className="AddDiaryLog">
+
       <h3>How do you feel today?</h3>
 
       <form onSubmit={handleSubmit}>
+
         <label>Number of Crisis:</label>
         <input
           type="number"
@@ -74,8 +80,6 @@ function AddDiaryLog(props) {
           onChange={(e) => setMood(e.target.value)}
         />
 
-        <button type="submit">Add Diary Info</button>
-
         <label>Indications by the doctor:</label>
         <input
           type="text"
@@ -83,18 +87,25 @@ function AddDiaryLog(props) {
           value={comments}
           onChange={(e) => setComments(e.target.value)}
         />
+        
         <label>Doctor Name:</label>
         <input
           type="text"
           name="doctorName"
           value={doctorName}
           onChange={(e) => setDoctorName(e.target.value)}
-        />
-
-        <button type="submit">Add Comments by the Doctor</button>
+          />
+      
+        <button type="submit">Add Diary Info</button>
+        
       </form>
+      
     </div>
   );
 }
 
 export default AddDiaryLog;
+
+
+
+

@@ -14,9 +14,14 @@ function DiaryLogCard({ crisisNumber, crisisType, duration, mood, comments, doct
         <p>{comments}</p>
         <h3>Doctor Name: </h3>
         <p>{doctorName}</p>
+          
       </div>
     );
   }
   
   export default DiaryLogCard;
+
+
+ 
+
   

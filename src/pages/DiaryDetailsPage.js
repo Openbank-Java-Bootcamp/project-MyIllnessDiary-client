@@ -50,9 +50,6 @@ function DiaryDetailsPage(props) {
         diary.diaryLogs.map((diaryLog) => <DiaryLogCard key={diaryLog.id} {...diaryLog} />)}
 
       
-
-    
-
      
       <Link to={`/diaries/edit/${diaryId}`}>
         <button>Edit Diary</button>
