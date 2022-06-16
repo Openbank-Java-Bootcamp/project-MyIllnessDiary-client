@@ -15,7 +15,7 @@ const API_URL = "http://localhost:5005";
 function PatientListPage(props) {
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState("");
-  const [roleId, setRoleId] = useState(0);
+  const [roleId, setRoleId] = useState(1);
   const [diary, setDiary] = useState(null);
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   
@@ -27,17 +27,17 @@ function PatientListPage(props) {
 
   useEffect(() => {
     const fetchData = async () => { 
-      const requestBody = { roleId };
-      const storedToken = localStorage.getItem("authToken");
-      try {
 
-        const response = await axios.get(API_URL + `/api/auth/users`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
-        setUsers(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      const storedToken = localStorage.getItem("authToken");
+      axios
+        .get(`${API_URL}/api/auth/patients`, 
+        {headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          console.log(response.data)
+          setUsers(response.data);
+        })
+        .catch((error) => console.log(error));
     };
 
     fetchData();
