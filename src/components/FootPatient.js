@@ -7,17 +7,19 @@ function FootPatient() {
 
   return (
     <nav className="Navbar">
-      
-
       {isLoggedIn && (
         <>
-        <Link to="/">
-            <button>Back</button>
-          </Link >
+          {user.role === "ROLE_PATIENT" ? (
+            <Link to="/">
+              <button>Back</button>
+            </Link>
+          ) : (
+            <Link to="/patients">
+              <button>Back</button>
+            </Link>
+          )}
         </>
       )}
-
-     
     </nav>
   );
 }

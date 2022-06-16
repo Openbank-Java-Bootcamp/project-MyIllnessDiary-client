@@ -1,21 +1,21 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom"; 
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import AddDiaryLog from "../components/AddDiaryLog";
 import DiaryLogCard from "../components/DiaryLogCard";
-import Navbar from "../components/Navbar"; 
-import FootPatient from "../components/FootPatient"; 
+import Navbar from "../components/Navbar";
+import FootPatient from "../components/FootPatient";
+import { AuthContext } from "../context/auth.context";
 
-const API_URL = "http://localhost:5005"; 
+const API_URL = "http://localhost:5005";
 
 function DiaryDetailsPage(props) {
   const [diary, setDiary] = useState(null);
-  
-  const { diaryId } = useParams(); 
+  const { isLoggedIn, user, logOutUser, isLoading } = useContext(AuthContext);
 
+  const { diaryId } = useParams();
 
   const getDiary = () => {
-    
     const storedToken = localStorage.getItem("authToken");
     axios
       .get(`${API_URL}/api/diaries/${diaryId}`, {
@@ -29,31 +29,32 @@ function DiaryDetailsPage(props) {
   };
 
   useEffect(() => {
-    
     getDiary();
   }, []);
 
   return (
     <div className="DiaryDetails">
-
-    <Navbar />
+      <Navbar />
 
       {diary && (
         <>
           <h1>{diary.diaryDate}</h1>
         </>
       )}
+      {user.role === "ROLE_PATIENT" ? (
+        <AddDiaryLog refreshDiary={getDiary} diaryId={diaryId} />
+      ) : (
+        <div></div>
+      )}
 
-      <AddDiaryLog refreshDiary={getDiary} diaryId={diaryId} />
-      
-      {diary &&
-        diary.diaryLogs.map((diaryLog) => <DiaryLogCard key={diaryLog.id} {...diaryLog} />)}
+      <div className="nextTo">
+        {diary &&
+          diary.diaryLogs.map((diaryLog) => (
+            <DiaryLogCard key={diaryLog.id} {...diaryLog} />
+          ))}
+      </div>
 
-      
      
-      <Link to={`/diaries/edit/${diaryId}`}>
-        <button>Edit Diary</button>
-      </Link>
       <FootPatient />
     </div>
   );

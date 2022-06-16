@@ -1,18 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("https://previews.123rf.com/images/bluemoon1981/bluemoon19811704/bluemoon1981170400033/76461965-fondo-m%C3%A9dico-abstracto-digital-fondo-abstracto-adecuado-para-la-salud-y-tema-m%C3%A9dico.jpg");
-  
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Playfair Display', serif;
 }
 
 a {
@@ -52,9 +48,19 @@ button{
   transform: translateY(4px);
 }
 
+.right{
+  float: right;
+  background-color: #BDFFF3;
+  font-size: 20px;
+}
+.nextTo{
+  display: flex;
+}
+
 label {
   width: 200px;
   display: block;
+  text-decoration: underline;
 }
 
 input,

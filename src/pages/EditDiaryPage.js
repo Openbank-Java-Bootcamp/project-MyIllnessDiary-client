@@ -1,37 +1,35 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom"; 
+import { useNavigate, useParams } from "react-router-dom";
 import DiaryLogCard from "../components/DiaryLogCard";
-import Navbar from "../components/Navbar"; 
+import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005";
 
 function EditDiaryPage(props) {
-    const [crisisNumber, setCrisisNumber] = useState(0);
-    const [crisisType, setCrisisType] = useState("");
-    const [duration, setDuration] = useState(0);
-    const [mood, setMood] = useState("");
-    const [comments, setComments] = useState("");
-    const [doctorName, setDoctorName] = useState("");
-    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const [crisisNumber, setCrisisNumber] = useState(0);
+  const [crisisType, setCrisisType] = useState("");
+  const [duration, setDuration] = useState(0);
+  const [mood, setMood] = useState("");
+  const [comments, setComments] = useState("");
+  const [doctorName, setDoctorName] = useState("");
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
+  const [diary, setDiary] = useState(null);
 
-    const [diary, setDiary] = useState(null);
-  
-  const { diaryId } = useParams(); 
+  const { diaryId } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
- 
+
     axios
       .get(`${API_URL}/api/diarylogs/${diaryId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        
         const oneDiary = response.data;
         setCrisisNumber(oneDiary.crisisNumber);
         setCrisisType(oneDiary.crisisType);
@@ -43,13 +41,18 @@ function EditDiaryPage(props) {
       .catch((error) => console.log(error));
   }, [diaryId]);
 
-
   const handleFormSubmit = (e) => {
-
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
 
-    const requestBody = { crisisNumber, crisisType, duration, mood, comments, doctorName };
+    const requestBody = {
+      crisisNumber,
+      crisisType,
+      duration,
+      mood,
+      comments,
+      doctorName,
+    };
 
     axios
       .put(`${API_URL}/api/diarylogs/${diaryId}`, requestBody, {
@@ -61,7 +64,6 @@ function EditDiaryPage(props) {
         navigate("/diaries/" + diaryId);
       });
   };
-  
 
   const deleteDiary = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -70,7 +72,11 @@ function EditDiaryPage(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-        navigate("/");
+        if (user.role === "ROLE_PATIENT") {
+          navigate("/");
+        } else {
+          navigate("/patients");
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -78,12 +84,11 @@ function EditDiaryPage(props) {
   return (
     <div className="EditDiaryPage">
       <Navbar />
-      
+
       <h3>Edit Diary</h3>
 
       <form onSubmit={handleFormSubmit}>
-      
-      <label>Number of Crisis:</label>
+        <label>Number of Crisis:</label>
         <input
           type="number"
           name="crisisNumber"
@@ -111,7 +116,7 @@ function EditDiaryPage(props) {
           value={mood}
           onChange={(e) => setMood(e.target.value)}
         />
-        
+
         <label>Indications by the doctor:</label>
         <input
           type="text"
@@ -119,22 +124,24 @@ function EditDiaryPage(props) {
           value={comments}
           onChange={(e) => setComments(e.target.value)}
         />
-        
+
         <label>Doctor Name:</label>
         <input
           type="text"
           name="doctorName"
           value={doctorName}
           onChange={(e) => setDoctorName(e.target.value)}
-          />
-        
+        />
+
         <button type="submit">Update Diary</button>
       </form>
 
       <button onClick={deleteDiary}>Delete Diary</button>
 
       {diary &&
-        diary.diaryLogs.map((diaryLog) => <DiaryLogCard key={diaryLog.id} {...diaryLog} />)}
+        diary.diaryLogs.map((diaryLog) => (
+          <DiaryLogCard key={diaryLog.id} {...diaryLog} />
+        ))}
     </div>
   );
 }

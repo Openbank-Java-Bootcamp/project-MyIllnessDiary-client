@@ -7,8 +7,8 @@ import { Link, useParams } from "react-router-dom";
 import DiaryDetailsPage from "./DiaryDetailsPage";
 import DiaryPage from "./DiaryPage";
 import DiaryLogCard from "../components/DiaryLogCard";
-import PatientCard from "../components/PatientCard"
-import NavbarDoctor from "../components/NavbarDoctor"; 
+import PatientCard from "../components/PatientCard";
+import NavbarDoctor from "../components/NavbarDoctor";
 
 const API_URL = "http://localhost:5005";
 
@@ -18,23 +18,18 @@ function PatientListPage(props) {
   const [roleId, setRoleId] = useState(1);
   const [diary, setDiary] = useState(null);
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  
-  const { diaryId, userId } = useParams(); 
 
-  
-
-
+  const { diaryId, userId } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => { 
-
+    const fetchData = async () => {
       const storedToken = localStorage.getItem("authToken");
       axios
-        .get(`${API_URL}/api/auth/patients`, 
-        {headers: { Authorization: `Bearer ${storedToken}` },
+        .get(`${API_URL}/api/auth/patients`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          console.log(response.data)
+          console.log(response.data);
           setUsers(response.data);
         })
         .catch((error) => console.log(error));
@@ -43,33 +38,26 @@ function PatientListPage(props) {
     fetchData();
   }, []);
 
-
   return (
-
     <div>
       <NavbarDoctor />
 
       <h2>Here you can see the list of the patients</h2>
 
       {users.map((user) => {
-          return (
-            <div key={user.id}>
-              <Link to={"/"}>
-                <div className="card" style={{ width: "18rem" }}>
-                  <div className="card-body">
-                    
-                      <h5 className="card-title">{user.name}</h5>
-                    
-                  </div>
+        return (
+          <div key={user.id}>
+            <Link to={"/"} state={{ userId: user.id }}>
+              <div className="card" style={{ width: "18rem" }}>
+                <div className="card-body">
+                  <h5 className="card-title">{user.name}</h5>
                 </div>
-              </Link>
-            </div>
-          );
-        })}
-      
-      
-
-</div>
+              </div>
+            </Link>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 

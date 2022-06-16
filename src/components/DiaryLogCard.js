@@ -1,6 +1,16 @@
+import { Link } from "react-router-dom";
 
-function DiaryLogCard({ crisisNumber, crisisType, duration, mood, comments, doctorName }) {
-    return (
+function DiaryLogCard({
+  crisisNumber,
+  crisisType,
+  duration,
+  mood,
+  comments,
+  doctorName,
+  id,
+}) {
+  return (
+    <div>
       <div className="DiaryLogCard card">
         <h3>Number of Crisis: </h3>
         <p>{crisisNumber}</p>
@@ -14,14 +24,12 @@ function DiaryLogCard({ crisisNumber, crisisType, duration, mood, comments, doct
         <p>{comments}</p>
         <h3>Doctor Name: </h3>
         <p>{doctorName}</p>
-          
       </div>
-    );
-  }
-  
-  export default DiaryLogCard;
+      <Link to={`/diaries/edit/${id}`}>
+        <button>Edit Diary</button>
+      </Link>
+    </div>
+  );
+}
 
-
- 
-
-  
+export default DiaryLogCard;

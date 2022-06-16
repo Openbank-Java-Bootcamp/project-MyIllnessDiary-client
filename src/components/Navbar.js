@@ -7,17 +7,22 @@ function Navbar() {
 
   return (
     <nav className="Navbar">
-      
-
       {isLoggedIn && (
         <>
-        <Link to="/">
-            <button>Home</button>
-          </Link >
+          {user.role === "ROLE_PATIENT" ? (
+            <Link to="/">
+              <button>Home</button>
+            </Link>
+          ) : (
+            <Link to="/patients">
+              <button>Home</button>
+            </Link>
+          )}
           <Link to="/login">
-          <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
-          </Link >
+            <button onClick={logOutUser}>Logout</button>
+
+            <span className="right">{user && user.name}</span>
+          </Link>
         </>
       )}
 

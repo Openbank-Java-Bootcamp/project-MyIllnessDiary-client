@@ -7,7 +7,6 @@ function DiaryCard({ diaryWeek, id }) {
       <Link to={`/diaries/${id}`}>
         <h3>{diaryWeek}</h3>
       </Link>
-      <p style={{ maxWidth: "400px" }}>{diaryWeek} </p>
     </div>
   );
 }
