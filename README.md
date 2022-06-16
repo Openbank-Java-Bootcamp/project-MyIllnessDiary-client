@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# My Illness Diary
+by María Jerez
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description of the project
 
-## Available Scripts
+The project consists of a health application to help people with chronic diseases. 
 
-In the project directory, you can run:
+With the application they can have a control of their illness by writing a diary where they can add values like: number of crisis, type of crisis, duration of the crisis and mood. 
 
-### `npm start`
+The doctors are able to add some comments to the patient diaries. 
+ 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+JavaScript. 
 
-### `npm test`
+React. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+HTML and CSS. 
 
-### `npm run build`
+## Components and Pages structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+IsDoctor 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+IsPatient 
 
-### `npm run eject`
+AddDiaryLog 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+AddDiaryPage 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+DiaryCard 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+DiaryLogCard 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+FootPatient 
 
-## Learn More
+Navbar 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Pages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+DiaryDetailsPage 
 
-### Code Splitting
+DiaryPage 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+EditDiaryPage 
 
-### Analyzing the Bundle Size
+HomePage 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+LoginPage 
 
-### Making a Progressive Web App
+SignupPage 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+PatientDetailsPage 
 
-### Advanced Configuration
+PatientListPage 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Future work
 
-### Deployment
+Improve security system 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Improve DiaryLogs 
 
-### `npm run build` fails to minify
+Improve the code
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Add search Bar 
+
+## Resources
+
+React Bootstrap: https://react-bootstrap.github.io/ 
+
+React Documentation: https://reactjs.org/ 
+
+Create React App: https://create-react-app.dev/ 
+
+React Props: https://www.agiliq.com/blog/2018/05/understanding-react-state-and-props/#understanding-reactjs-props 
+
+Hooks: https://reactjs.org/docs/hooks-reference.html 
+
+MDN: https://developer.mozilla.org/en-US/ 
+
+Color picker: https://www.google.com/search?q=color+picker&oq=color+pi&aqs=chrome.0.0i131i433i512j69i57j0i433i512j0i512j0i433i512j0i512l5.3522j0j7&sourceid=chrome&ie=UTF-8 
+
+CSS selectors: https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes 
+
+Ironhack Student Portal 
+
+ 
+
+TRELLO: https://trello.com/b/0mvFNewD/final-project 
+
+
+
+
+
