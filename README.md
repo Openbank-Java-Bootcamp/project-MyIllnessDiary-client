@@ -89,7 +89,7 @@ Ironhack Student Portal
  
 
 TRELLO: https://trello.com/b/0mvFNewD/final-project 
-
+SLIDES: https://slides.com/mariajerfer
 
 
 
